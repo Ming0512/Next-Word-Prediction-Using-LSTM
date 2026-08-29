@@ -1,0 +1,22 @@
+DataParams:
+  num_words: 10000          # vocabulary cap
+  max_lines: 8000           # cap corpus size (n-gram expansion is O(n^2) per line)
+  test_split: 0.15
+
+ModelParams:
+  embedding_dim: 100
+  lstm_units: [150, 100]    # sizes of the two stacked LSTM layers
+  dropout: 0.2
+
+TrainingParams:
+  epochs: 50
+  batch_size: 128
+  validation_split: 0.1
+  early_stopping_patience: 5
+  random_seed: 42
+  monitor_metric: "val_accuracy"
+
+InferenceParams:
+  default_num_words: 10
+  max_num_words: 50
+  default_temperature: 0.0   

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Word Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">LSTM Language Model</p>
+    <h1>Next Word Predictor</h1>
+    <p class="subhead">Type the start of a sentence. A stacked LSTM will predict and generate the words that come next, one at a time.</p>
+
+    <form method="POST" action="/predict">
+      <label for="seed_text">Starting Phrase</label>
+      <textarea
+        id="seed_text"
+        name="seed_text"
+        placeholder="e.g. &quot;once upon a time there was a&quot;"
+      >{{ seed_text or "" }}</textarea>
+
+      <div class="controls">
+        <div class="field">
+          <label for="num_words" style="margin-bottom:0;">Words to generate</label>
+          <input
+            type="number"
+            id="num_words"
+            name="num_words"
+            min="1"
+            max="{{ max_num_words }}"
+            value="{{ default_num_words }}"
+          >
+        </div>
+        <label class="checkbox-field">
+          <input type="checkbox" name="creative">
+          Creative mode (sampled, more varied)
+        </label>
+      </div>
+
+      <div class="row">
+        <button type="submit">Generate</button>
+      </div>
+    </form>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if generated %}
+    <div class="result">
+      <p class="eyebrow">Generated</p>
+      <p class="generated-text">
+        <span class="seed">{{ seed_text }}</span>
+        <span class="continuation">{{ continuation }}</span>
+      </p>
+    </div>
+    {% endif %}
+
+    <footer>Model: LSTM (single / stacked / bidirectional, configurable) &middot; Running locally</footer>
+  </main>
+</body>
+</html>
