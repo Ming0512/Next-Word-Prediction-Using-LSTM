@@ -20,6 +20,7 @@ artifacts/
 logs/
 *.log
 
+
 # Jupyter
 .ipynb_checkpoints/
 
