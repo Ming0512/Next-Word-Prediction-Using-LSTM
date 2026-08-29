@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+
 # artifacts/ (trained model, tokenizer, meta) is expected to be present
 # at build time or mounted as a volume at runtime.
 EXPOSE 5000
