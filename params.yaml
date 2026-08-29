@@ -16,6 +16,7 @@ TrainingParams:
   random_seed: 42
   monitor_metric: "val_accuracy"
 
+
 InferenceParams:
   default_num_words: 10
   max_num_words: 50
